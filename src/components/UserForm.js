@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // importing react
 import * as XLSX from 'xlsx';
 import './UserForm.css'; // Import your CSS file for styling
 
 const UserForm = () => {
-  // State to hold user information
+  // State to hold user information to get the required information
+  // handling the changes by using useState of the react
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,15 +18,18 @@ const UserForm = () => {
     notes: ''
   });
 
+  // By Using useState, handling the changes for the submitted data to store it into the csv file
   const [submittedData, setSubmittedData] = useState([]);
 
   // Handle input change
+  // accepting the data from the user and setting the data of the attributes of the form
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
   // Handle form submission
+  // when user clicks on the submit, then we will change the default values by the user inputed values
   const handleSubmit = (e) => {
     e.preventDefault();
     setSubmittedData([...submittedData, formData]);
@@ -44,6 +48,7 @@ const UserForm = () => {
   };
 
   // Export data to Excel
+  // XLSX is the standard React Library which is used to transfer the data from the form to the CSV file
   const exportToExcel = () => {
     const worksheet = XLSX.utils.json_to_sheet(submittedData);
     const workbook = XLSX.utils.book_new();
@@ -51,6 +56,7 @@ const UserForm = () => {
     XLSX.writeFile(workbook, 'user_data.xlsx');
   };
 
+  // returning the form which will take input from the user
   return (
     <div className="form-container">
       <h2 className="form-title">Information</h2>
