@@ -119,3 +119,4 @@ const UserForm = () => {
 };
 
 export default UserForm;
+// makes it easy to use it in the index file
